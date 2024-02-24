@@ -1,0 +1,23 @@
+const express = require("express");
+const profile = require("../controllers/userControllers/profile");
+const router = express.Router();
+const getAllUser = require("../controllers/userControllers/getAllUser");
+const updateUser = require("../controllers/userControllers/updateUser");
+const downloadUsersInPdf = require("../controllers/userControllers/downloadUsersInPdf");
+const donwloadUsersInExcel = require("../controllers/userControllers/donwloadUsersInExcel");
+const isAuthenticated = require("../middleware/isAuthenticated");
+const { error, success } = require("../utils/Wrapper");
+const User = require("../models/User");
+const donwloadSingleUser = require("../controllers/userControllers/downloadSingleUserInPdf");
+const deleteUser = require("../controllers/userControllers/deleteUser");
+const userImgDownload = require("../controllers/userControllers/userImgDownload");
+
+router.get("/profile", isAuthenticated, profile);
+router.put("/updateProfile", isAuthenticated, updateUser);
+router.get("/getAllUser", isAuthenticated, getAllUser);
+router.get("/downloadUsersInPdf", isAuthenticated, downloadUsersInPdf);
+router.get("/downloadUsersInExcel", isAuthenticated, donwloadUsersInExcel);
+router.get("/downloadSingleUserInPdf", isAuthenticated, donwloadSingleUser);
+router.delete("/deleteUser", isAuthenticated, deleteUser);
+router.get("/imageDownloadInPdf", isAuthenticated, userImgDownload);
+module.exports = router;
